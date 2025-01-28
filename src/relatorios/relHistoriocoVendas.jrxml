@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relClientes" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="47b55d08-dd81-4f2c-b817-bf186e121ece">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="linhas_alternadas">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2==0]]></conditionExpression>
+			<style mode="Opaque" forecolor="#000000" backcolor="#CCCCCC"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="$P{data_inicial} AND $P{data_final}" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_inicial" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
+	<parameter name="data_final" class="java.util.Date">
+		<defaultValueExpression><![CDATA[new java.util.Date()]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT 
+    v.id, 
+    c.nome, 
+    DATE_FORMAT(v.data_venda, '%d/%m/%Y') AS data_formatada, 
+    v.total_venda, 
+    v.observacoes 
+FROM 
+    tb_vendas AS v 
+INNER JOIN 
+    tb_clientes AS c 
+ON 
+    v.cliente_id = c.id 
+WHERE 
+    v.data_venda BETWEEN $P{data_inicial} AND $P{data_final}]]>
+	</queryString>
+	<field name="id" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nome" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="data_formatada" class="java.lang.String"/>
+	<field name="total_venda" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="observacoes" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="555" height="79" uuid="55268f80-811c-4c32-9990-f906eb619071"/>
+				<imageExpression><![CDATA["C:\\sistema Estoque\\src\\imgFundo\\slogaRelatorio.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="553" height="35" uuid="266d4896-de2d-41ea-bff5-7c31a9fbf737"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Histórico de Vendas ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Opaque" x="0" y="0" width="111" height="20" forecolor="#FFFFFF" backcolor="#030305" uuid="4f759106-2c5b-4333-b2ee-cbbc4a4a35ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[id]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="111" y="0" width="111" height="20" forecolor="#FFFFFF" backcolor="#030305" uuid="be473680-dd63-4ee9-9f93-458556a37011"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="222" y="0" width="111" height="20" forecolor="#FFFFFF" backcolor="#030305" uuid="7d5b6745-bc8b-4944-a722-3e3f56c54af4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[data_formatada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="333" y="0" width="111" height="20" forecolor="#FFFFFF" backcolor="#030305" uuid="415b3811-47f7-4537-a53d-f64b9909b421"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[total_venda]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="444" y="0" width="111" height="20" forecolor="#FFFFFF" backcolor="#030305" uuid="deba7bec-e2e0-4d06-9a50-6fa58bcb277c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[observacoes]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="29" width="555" height="1" uuid="758e615f-a827-4f53-a97a-16eb86295fad"/>
+			</line>
+			<textField>
+				<reportElement style="linhas_alternadas" x="0" y="0" width="111" height="29" uuid="a4adc99c-e5a5-4128-bd06-d4bf3d513961"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="linhas_alternadas" x="111" y="0" width="111" height="29" uuid="27f4f3d7-b5bb-4176-ba95-c614dd0b7d92"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="linhas_alternadas" x="222" y="0" width="111" height="29" uuid="b5a51db9-dc47-444d-a2f7-4e688858101d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_formatada}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="linhas_alternadas" x="333" y="0" width="111" height="29" uuid="b37a477f-8894-45db-bd80-1d06200881fd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{total_venda}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="linhas_alternadas" x="444" y="0" width="111" height="29" uuid="f2309d8e-27cc-4e13-b04b-86c140aedca9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacoes}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<textField>
+				<reportElement x="413" y="25" width="81" height="20" uuid="6869cd18-01c1-4bf1-a804-bd01a088baed"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página"+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="494" y="25" width="60" height="20" uuid="4395c09a-4561-4b81-be73-7068a53e64ec"/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="148" y="25" width="94" height="20" forecolor="#FF0000" uuid="57f9c407-ded4-41fb-85d8-401ea39ff718"/>
+				<textElement>
+					<font size="14" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="25" width="148" height="20" uuid="64b877f0-24b9-407e-a32a-942ca812cda2"/>
+				<textElement verticalAlignment="Top">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório gerado em: ]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="174" y="21" width="90" height="20" uuid="37b0792b-7e8e-4dd8-b94d-6ceb781d72bd"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Desenvolvido por:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="264" y="22" width="145" height="20" uuid="a1898cf9-76c4-42ed-b61f-781c9488664f"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[ Cleyton Junior Dos Santos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="204" y="42" width="162" height="20" uuid="9b415399-e522-4d2f-8672-99c51d5a83ee"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Desenvolvedor de Sistetemas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="214" y="62" width="138" height="20" uuid="15a81590-2c51-48de-b230-5f592c506fde"/>
+				<textElement verticalAlignment="Top"/>
+				<text><![CDATA[Contato: (37)9 9844-1909]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
