@@ -11,11 +11,16 @@ import br.com.sistema.model.Clientes;
 import br.com.sistema.model.Fornecedores;
 import br.com.sistema.model.Produtos;
 import br.com.sistema.ultilitarios.Ultilitarios;
+import java.awt.Image;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Arc2D;
+import java.io.File;
 import java.util.List;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -55,7 +60,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
      */
     public void Salvar() {
         // 1º Criar um novo objeto Clientes e definir seus atributos a partir dos campos da interface gráfica
-        Produtos obj = new Produtos();
+        Produtos obj = new Produtos();        
         obj.setDescricao(txtDescricao.getText());
         obj.setPreco(Double.valueOf(txtPreco.getText()));
         obj.setQtd_estoque(Integer.valueOf(txtQtdEstoque.getText()));
@@ -330,6 +335,10 @@ public class FormularioProdutos extends javax.swing.JDialog {
         jLabel13 = new javax.swing.JLabel();
         txtQtdEstoque = new javax.swing.JTextField();
         cdFornecedor = new javax.swing.JComboBox();
+        PanelImagem = new javax.swing.JPanel();
+        textFeldDisplay = new javax.swing.JTextField();
+        btnChooseImageFromComputer = new javax.swing.JButton();
+        labelDisplayImage = new javax.swing.JLabel();
         painel_consulta = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
         txtPesquisaDescricao = new javax.swing.JTextField();
@@ -375,7 +384,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 933, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(15, 15, 15)
                 .addComponent(jLabel6)
                 .addContainerGap())
@@ -459,17 +468,45 @@ public class FormularioProdutos extends javax.swing.JDialog {
             }
         });
 
+        PanelImagem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imagem", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
+
+        textFeldDisplay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        btnChooseImageFromComputer.setText("Load Imagem");
+        btnChooseImageFromComputer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnChooseImageFromComputerActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout PanelImagemLayout = new javax.swing.GroupLayout(PanelImagem);
+        PanelImagem.setLayout(PanelImagemLayout);
+        PanelImagemLayout.setHorizontalGroup(
+            PanelImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnChooseImageFromComputer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(PanelImagemLayout.createSequentialGroup()
+                .addComponent(labelDisplayImage, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelImagemLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(textFeldDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        PanelImagemLayout.setVerticalGroup(
+            PanelImagemLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(PanelImagemLayout.createSequentialGroup()
+                .addComponent(labelDisplayImage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(textFeldDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnChooseImageFromComputer))
+        );
+
         javax.swing.GroupLayout painel_dados_pessoaisLayout = new javax.swing.GroupLayout(painel_dados_pessoais);
         painel_dados_pessoais.setLayout(painel_dados_pessoaisLayout);
         painel_dados_pessoaisLayout.setHorizontalGroup(
             painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
                 .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(jLabel2)
-                        .addGap(6, 6, 6)
-                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
                         .addGroup(painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
@@ -495,8 +532,15 @@ public class FormularioProdutos extends javax.swing.JDialog {
                                         .addComponent(txtQtdEstoque, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 422, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(12, 12, 12)
-                        .addComponent(btnPesquisa)))
-                .addGap(322, 322, 322))
+                        .addComponent(btnPesquisa))
+                    .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2)
+                        .addGap(6, 6, 6)
+                        .addComponent(txtCodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
+                .addComponent(PanelImagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37))
         );
         painel_dados_pessoaisLayout.setVerticalGroup(
             painel_dados_pessoaisLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -527,7 +571,11 @@ public class FormularioProdutos extends javax.swing.JDialog {
                     .addGroup(painel_dados_pessoaisLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel13))
-                    .addComponent(cdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(cdFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_dados_pessoaisLayout.createSequentialGroup()
+                .addComponent(PanelImagem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         painel_guias.addTab("Dados do Produto", painel_dados_pessoais);
@@ -810,6 +858,23 @@ public class FormularioProdutos extends javax.swing.JDialog {
        this.dispose();
     }//GEN-LAST:event_jLabel6MousePressed
 
+    private void btnChooseImageFromComputerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnChooseImageFromComputerActionPerformed
+        JFileChooser filechooser = new JFileChooser();
+        //chooser only "png","jpg","jpeg"
+        FileNameExtensionFilter fnef = new FileNameExtensionFilter("IMAGES", "png","jpg","jpeg");
+        filechooser.addChoosableFileFilter(fnef);
+        int openDialog = filechooser.showOpenDialog(null);
+        if(openDialog == filechooser.APPROVE_OPTION){
+           File selectedFile = filechooser.getSelectedFile();
+           String selectedImagePath = selectedFile.getAbsolutePath();
+           textFeldDisplay.setText(selectedImagePath);
+           ImageIcon ii = new ImageIcon(selectedImagePath);
+           //Resizing image to fit JLabel
+           Image image = ii.getImage().getScaledInstance(labelDisplayImage.getWidth(), labelDisplayImage.getHeight(),Image.SCALE_SMOOTH);
+           labelDisplayImage.setIcon(new ImageIcon(image));           
+        }
+    }//GEN-LAST:event_btnChooseImageFromComputerActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -847,6 +912,8 @@ public class FormularioProdutos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelImagem;
+    private javax.swing.JButton btnChooseImageFromComputer;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
     private javax.swing.JButton btnImprimir;
@@ -866,10 +933,12 @@ public class FormularioProdutos extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel labelDisplayImage;
     private javax.swing.JPanel painel_consulta;
     private javax.swing.JPanel painel_dados_pessoais;
     public javax.swing.JTabbedPane painel_guias;
     private javax.swing.JTable tabela;
+    private javax.swing.JTextField textFeldDisplay;
     private javax.swing.JTextField txtCodigo;
     private javax.swing.JTextField txtDescricao;
     private javax.swing.JTextField txtPesquisaDescricao;
