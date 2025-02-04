@@ -7,6 +7,7 @@ package br.com.sistema.ultilitarios;
 import java.awt.Component;
 import java.awt.Toolkit;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -43,7 +44,11 @@ public class Ultilitarios {
             }
         }
     }*/
-
+public void LimparIcone(JLabel label) {
+    if (label != null) {
+        label.setIcon(null);
+    }
+}
     public void LimparTela(JPanel conteiner) {
         // Obtém todos os componentes do painel fornecido
         Component[] components = conteiner.getComponents();

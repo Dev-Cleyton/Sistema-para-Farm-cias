@@ -11,9 +11,18 @@ package br.com.sistema.model;
 public class Produtos {
     private int id;
     private String descricao;
+    private String link_imagem;
     private double preco;
     private int qtd_estoque;
     private Fornecedores fornecedores;
+
+    public String getLink_imagem() {
+        return link_imagem;
+    }
+
+    public void setLink_imagem(String link_imagem) {
+        this.link_imagem = link_imagem;
+    }
 
     public int getId() {
         return id;

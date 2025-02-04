@@ -36,8 +36,8 @@ public class ProdutosDAO {
     public void SalvarProdutoDao(Produtos obj) {
         try {
             // 1º Definir a query SQL de inserção
-            String sql = "INSERT INTO tb_produtos(descricao, preco, qtd_estoque, for_id) "
-                    + "VALUES (?, ?, ?, ?)";
+            String sql = "INSERT INTO tb_produtos(descricao, preco, qtd_estoque, for_id,link_imagem) "
+                    + "VALUES (?, ?, ?, ?, ?)";
 
             // 2º Preparar a instrução SQL e atribuir os valores do objeto Produtos
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -45,6 +45,7 @@ public class ProdutosDAO {
             stmt.setDouble(2, obj.getPreco());
             stmt.setInt(3, obj.getQtd_estoque());
             stmt.setInt(4, obj.getFornecedores().getId());
+            stmt.setString(5,obj.getLink_imagem());
 
             // 3º Executar a query de inserção
             stmt.execute();
@@ -61,7 +62,7 @@ public class ProdutosDAO {
     public void EditarProdutoDao(Produtos obj) {
         try {
             // 1º Definir a query SQL para atualizar os dados do cliente com base no ID
-            String sql = "update tb_produtos set descricao=?,preco=?,qtd_estoque=?,for_id=? WHERE id = ?";
+            String sql = "update tb_produtos set descricao=?,preco=?,qtd_estoque=?,for_id=? WHERE id =?";
 
             // 2º Preparar a instrução SQL e atribuir os valores do objeto Clientes
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -69,8 +70,7 @@ public class ProdutosDAO {
             stmt.setDouble(2, obj.getPreco());
             stmt.setInt(3, obj.getQtd_estoque());
             stmt.setInt(4, obj.getFornecedores().getId());
-            stmt.setInt(5, obj.getId());
-
+            stmt.setInt(5, obj.getId());            
             // 3º Executar a query de atualização
             stmt.execute();
 

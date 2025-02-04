@@ -64,6 +64,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
         obj.setDescricao(txtDescricao.getText());
         obj.setPreco(Double.valueOf(txtPreco.getText()));
         obj.setQtd_estoque(Integer.valueOf(txtQtdEstoque.getText()));
+        obj.setLink_imagem(textFeldDisplay.getText());
 
         // Obtém o estado selecionado no combobo
         obj.setFornecedores((Fornecedores)cdFornecedor.getSelectedItem());
@@ -109,7 +110,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
         obj.setDescricao(txtDescricao.getText());
         obj.setPreco(Double.parseDouble(txtPreco.getText()));
         obj.setQtd_estoque(Integer.parseInt(txtQtdEstoque.getText()));
-        
+        //obj.setLink_imagem(textFeldDisplay.getText());IMAGEM
         // Obtém o estado selecionado no combobox        
         Fornecedores f = new Fornecedores();
         f =(Fornecedores) cdFornecedor.getSelectedItem();
@@ -470,6 +471,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
 
         PanelImagem.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Imagem", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 11))); // NOI18N
 
+        textFeldDisplay.setEditable(false);
         textFeldDisplay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         btnChooseImageFromComputer.setText("Load Imagem");
@@ -776,6 +778,8 @@ public class FormularioProdutos extends javax.swing.JDialog {
     private void btnNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNovoActionPerformed
         Ultilitarios util = new Ultilitarios();
         util.LimparTela(painel_dados_pessoais);//nome do painel 
+        util.LimparTela(PanelImagem);
+        util.LimparIcone(labelDisplayImage);
     }//GEN-LAST:event_btnNovoActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
@@ -803,8 +807,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
         txtCodigo.setText(tabela.getValueAt(tabela.getSelectedRow(), 0).toString());
         txtDescricao.setText(tabela.getValueAt(tabela.getSelectedRow(), 1).toString());
         txtPreco.setText(tabela.getValueAt(tabela.getSelectedRow(), 2).toString());
-        txtQtdEstoque.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());
-        
+        txtQtdEstoque.setText(tabela.getValueAt(tabela.getSelectedRow(), 3).toString());        
         Fornecedores f = new Fornecedores();
         FornecedoresDAO daof = new FornecedoresDAO();
         
@@ -912,7 +915,7 @@ public class FormularioProdutos extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel PanelImagem;
+    public javax.swing.JPanel PanelImagem;
     private javax.swing.JButton btnChooseImageFromComputer;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
