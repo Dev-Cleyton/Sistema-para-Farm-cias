@@ -20,6 +20,7 @@ public class FornecedoresServiceImpl extends UnicastRemoteObject implements Forn
     
     @Override
     public void SalvarFornecedoresDao(Fornecedores fornecedor)throws RemoteException{
+        System.out.println("Fonecedor salvo com Sucesso");
         fornecedoresDAO.SalvarFornecedoresDao(fornecedor);
     }
     

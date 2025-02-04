@@ -17,6 +17,7 @@ public class ClienteServiceImpl extends UnicastRemoteObject implements ClienteSe
 
     @Override
     public void SalvarClienteDao(Clientes cliente) throws RemoteException {
+        System.out.println("Cliente Salvo com Sucesso");
         clienteDAO.SalvarClienteDao(cliente);
     }
 

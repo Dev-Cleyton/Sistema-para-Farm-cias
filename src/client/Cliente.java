@@ -3,7 +3,6 @@ package client;
 import br.com.sistema.model.Clientes;
 import br.com.sistema.rmi.ClienteService;
 //import server.BoletoService;
-
 //import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
@@ -36,8 +35,6 @@ public class Cliente {
             service.SalvarClienteDao(cliente);
             
             System.out.println("Cliente salvo via RMI!");
-            
-            // Buscar cliente
             Clientes clienteEncontrado = service.BuscarClienteDao("João RMI");
             System.out.println("Cliente encontrado: " + clienteEncontrado.getNome());
             
