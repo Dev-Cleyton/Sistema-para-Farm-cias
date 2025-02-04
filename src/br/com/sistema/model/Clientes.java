@@ -4,11 +4,13 @@
  */
 package br.com.sistema.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author cleyton
  */
-public class Clientes {
+public class Clientes implements Serializable{
     private int id;
     private String nome;
     private String rg;

@@ -4,11 +4,13 @@
  */
 package br.com.sistema.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author cleyton
  */
-public class ItensVendas {
+public class ItensVendas implements Serializable {
    private int id;
    private Vendas vedas;//cheve secudari no banco
    private Produtos produtos;//cheve secudari no banco

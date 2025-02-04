@@ -4,11 +4,13 @@
  */
 package br.com.sistema.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author cleyton
  */
-public class Funcionarios extends Clientes{
+public class Funcionarios extends Clientes implements Serializable{
     
    private String senha;
    private String cargo;

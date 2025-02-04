@@ -4,11 +4,13 @@
  */
 package br.com.sistema.model;
 
+import java.io.Serializable;
+
 /**
  *
  * @author cleyton
  */
-public class Fornecedores extends Clientes{
+public class Fornecedores extends Clientes implements Serializable{
     private String cnpj;
 
     public String getCnpj() {
