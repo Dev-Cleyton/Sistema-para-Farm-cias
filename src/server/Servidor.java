@@ -4,6 +4,8 @@ import br.com.sistema.rmi.ClienteService;
 import br.com.sistema.rmi.ClienteServiceImpl;
 import br.com.sistema.rmi.FornecedoresService;
 import br.com.sistema.rmi.FornecedoresServiceImpl;
+import br.com.sistema.rmi.FuncionariosService;
+import br.com.sistema.rmi.FuncionariosServiceImpl;
 import java.rmi.Naming;
 import java.rmi.registry.LocateRegistry;
 
@@ -16,10 +18,12 @@ public class Servidor {
             // Criar uma instância do serviço
             ClienteService serviceCliente = new ClienteServiceImpl();
             FornecedoresService serviceFornecedo = new FornecedoresServiceImpl();
+            FuncionariosService funcionariosService = new FuncionariosServiceImpl();
             
             // Vincular o serviço ao registro
             Naming.rebind("ClienteService", serviceCliente);
             Naming.rebind("FornecedoresService", serviceFornecedo);
+            Naming.rebind("FuncionariosService", funcionariosService);
             
             System.out.println("Servidor RMI iniciado...");
         } catch (Exception e) {
