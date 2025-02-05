@@ -16,6 +16,7 @@ public class FuncionariosServiceImpl extends UnicastRemoteObject implements Func
     }
     @Override
     public void SalvarFuncionarioDao(Funcionarios funcionario) throws RemoteException{
+        System.err.println("Funcionario Salvo ConSucesso");
         funcionariosDAO.SalvarFuncionarioDao(null);
     }
     

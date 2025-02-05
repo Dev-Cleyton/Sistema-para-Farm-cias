@@ -40,7 +40,12 @@ public class FornecedoresServiceImpl extends UnicastRemoteObject implements Forn
     
     @Override
     public List<Fornecedores> ListarFornecedoreDao() throws RemoteException{
+        try{
         return fornecedoresDAO.ListarFornecedoreDao();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RemoteException("Erro ao listar fornecedores", e);
+        }
     }
     
     @Override

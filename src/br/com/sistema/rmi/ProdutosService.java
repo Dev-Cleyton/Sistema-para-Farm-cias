@@ -1,6 +1,5 @@
-
 package br.com.sistema.rmi;
-import br.com.sistema.dao.ProdutosDAO;
+
 import br.com.sistema.model.Produtos;
 import java.rmi.Remote;
 import java.rmi.RemoteException;

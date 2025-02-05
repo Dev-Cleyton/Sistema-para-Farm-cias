@@ -1,10 +1,8 @@
 package br.com.sistema.rmi;
 
-import br.com.sistema.dao.FornecedoresDAO;
 import br.com.sistema.model.Fornecedores;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public interface FornecedoresService extends Remote{

@@ -1,10 +1,9 @@
 package br.com.sistema.rmi;
 
-import br.com.sistema.dao.FuncionariosDAO;
+
 import br.com.sistema.model.Funcionarios;
 import java.rmi.Remote;
 import java.rmi.RemoteException;
-import java.rmi.server.UnicastRemoteObject;
 import java.util.List;
 
 public interface FuncionariosService extends Remote {

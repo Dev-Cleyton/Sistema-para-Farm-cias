@@ -137,5 +137,13 @@ public class Clientes implements Serializable{
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+    @Override
+    public String toString() {
+    return "Cliente { Nome: " + nome + ", RG: " + rg + ", CPF: " + cpf + ", Email: " + email +
+           ", Telefone: " + telefone + ", Celular: " + celular + ", CEP: " + cep + ", Endereço: " + endereco +
+           ", Número: " + numero + ", Complemento: " + complemento + ", Bairro: " + bairro + 
+           ", Cidade: " + cidade + ", Estado: " + estado + " }";
+    }
+
+
 }
